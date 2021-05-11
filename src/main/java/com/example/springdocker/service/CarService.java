@@ -29,7 +29,7 @@ public class CarService {
 
         // returnerar endast Car namnen i en lista
         return drivableCars.stream()
-                .map(car -> car.getName())
+                .map(Car::getName)
                 .collect(Collectors.toList());
     }
 }
