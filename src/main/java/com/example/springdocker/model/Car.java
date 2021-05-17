@@ -1,15 +1,20 @@
 package com.example.springdocker.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import java.util.UUID;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Entity
+
 public class Car {
-    String id;
-    String name;
-    boolean drivable;
-    boolean canIDriveIt;
+    @Id
+    @GeneratedValue
+    private UUID id;
+
+    private String make;
+
+    private String model;
+
 }
