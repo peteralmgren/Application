@@ -2,10 +2,16 @@ name: Greeter
 
 on:
   workflow_dispatch:
+    push:
+      branches:
+        -master
+      pull_request:
 
 jobs:
   greet:
     runs-on: ubuntu-latest
+
+
 
     steps:
       - name: step 1, Greet
