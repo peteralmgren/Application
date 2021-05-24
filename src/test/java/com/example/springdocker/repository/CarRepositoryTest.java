@@ -4,12 +4,13 @@ import com.example.springdocker.model.Car;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@DataJpaTest
+
+@DataMongoTest
 class CarRepositoryTest {
 
     @Autowired
@@ -17,8 +18,8 @@ class CarRepositoryTest {
 
     @Test
     void existsCarByMakeIgnoreCaseAndModelIgnoreCase() {
-        String expectedMake = "make";
-        String expectedModel = "model";
+        String expectedMake = "volvo";
+        String expectedModel = "xc90";
 
         Car savingCar = new Car();
         savingCar.setMake(expectedMake);
