@@ -13,6 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 public class CarController {
+
     private final CarService carservice;
 
     @GetMapping("/cars")
@@ -20,9 +21,16 @@ public class CarController {
         return carservice.getAll();
     }
 
-    @PostMapping("/cars")
-    public void saveNewCar(@RequestBody Car car) {
+    @PostMapping("/savecar")
+    public String saveNewCar(@RequestBody Car car) {
+
         carservice.saveNewCar(car);
+        return "Car saved";
+    }
+
+    @GetMapping("/carsmessage")
+    public String gethello() {
+        return "Hello";
     }
 
     //@GetMapping("/cars/drivable")

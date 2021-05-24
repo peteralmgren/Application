@@ -1,17 +1,13 @@
 package com.example.springdocker.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-
-import javax.persistence.*;
-import java.util.UUID;
+import lombok.NoArgsConstructor;
 
 @Data
-@Entity
-
+@NoArgsConstructor
+@AllArgsConstructor
 public class Car {
-    @Id
-    @GeneratedValue
-    private UUID id;
 
     private String make;
 
