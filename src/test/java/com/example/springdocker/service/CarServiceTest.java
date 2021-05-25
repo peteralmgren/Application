@@ -20,7 +20,6 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class) // Junit 5
 class CarServiceTest {
 
-    // klass vi vill testa
     CarService carService;
 
     @Mock

@@ -1,38 +1,48 @@
 name: push-and-upload
 
 on:
-  push:
-    pull_request:
+  workflow_dispatch:
+
 
 jobs:
-  build-and-test:
+  pushupload:
+
     runs-on: ubuntu-20.04
 
     steps:
-      - name: Get code
+      - name: Checkout Code
         uses: actions/checkout@v2
 
       - name: Get java
         uses: actions/setup-java@v2
+
+      - name:
+        uses: actions/setup-java@v2
         with:
-          distribution: 'adopt'
           java-version: '11'
+          distribution: 'adopt'
 
       - name: Java version
         run: java -version
 
-      - name: Run Test
+      - name: Build Jar
         run: mvn test
 
       - name: Docker Hub Login
         uses: docker/login-action@v1
         with:
-          username: @{{ secrets.DOCKERHUB_USERNAME }}
-          password: @{{ secrets.DOCKERHUB_TOKEN }}
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
           context:
           push: true
-          tags: peteralmgren:@{{ github.run_number }}
+          tags: peteralmgren/peter-image:${{ github.run_number }}
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: app.jar
+          path: target/*.jar
