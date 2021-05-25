@@ -41,13 +41,7 @@ class CarServiceTest {
         when(mockRepository.findAll())
                 .thenReturn(Arrays.asList(mockCar));
 
-        //        ------------------------------------
-
-
-        // anropa våran metod
         List<Car> actual = carService.getAll();
-
-//        ------------------------------------
 
         assertEquals(mockCar.getMake(), actual.get(0).getMake());
         assertEquals(expectedModel, actual.get(0).getModel());
@@ -67,11 +61,10 @@ class CarServiceTest {
 
         when(mockRepository.save(any()))
                 .thenReturn(savingCar);
-        // -----------------------------------
+
 
         Car actual = carService.saveNewCar(savingCar);
 
-        // ----------------------------------
 
         assertEquals(savingCar.getMake(), actual.getMake());
         assertEquals(savingCar.getModel(), actual.getModel());
@@ -83,11 +76,9 @@ class CarServiceTest {
     @Test
     void save_invalid() {
         Car invalidCar = new Car();
-        // -----------------------------------
 
         assertThrows(ResponseStatusException.class, () -> carService.saveNewCar(invalidCar));
 
-        // ----------------------------------
 
         verify(mockRepository, times(0)).save(any());
         verify(mockRepository, times(0)).existsCarByMakeIgnoreCaseAndModelIgnoreCase(anyString(), anyString());
@@ -106,12 +97,8 @@ class CarServiceTest {
         when(mockRepository.existsCarByMakeIgnoreCaseAndModelIgnoreCase(anyString(), anyString()))
                 .thenReturn(true);
 
-        // -----------------------------------
 
         assertThrows(ResponseStatusException.class, () -> carService.saveNewCar(savingCar));
-
-        // ----------------------------------
-
 
         verify(mockRepository, times(0)).save(any());
         verify(mockRepository).existsCarByMakeIgnoreCaseAndModelIgnoreCase(anyString(), anyString());
