@@ -23,7 +23,7 @@ jobs:
           distribution: 'adopt'
 
       - name: Java version
-        run: java -version
+        run: java-version
 
       - name: Build Jar
         run: mvn test
